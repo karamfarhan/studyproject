@@ -1,29 +1,22 @@
 {% extends 'main.html' %}
-
 {% block content %}
+
 <style>
-    .home-container {
+    .profile-container {
         display: grid;
         grid-template-columns: 1fr 3fr 1fr;
     }
 </style>
-
-<div class="home-container">
+<h1>{{ user.username }}</h1>
+<div class="profile-container">
     <div>
         {% include 'base/topics_component.html' %}
     </div>
-
     <div>
-        <h5>{{ room_count }} rooms available</h5>
-        <a href="{% url 'create_room' %}">Create Room</a>
-        <hr>
         {% include 'base/feed_component.html' %}
-        <!-- when you make inculde in any page you should pass the data information in the page that inculde happend in it not in the inculde page-->
     </div>
-
     <div>
         {% include 'base/activity_component.html' %}
     </div>
-
 </div>
-{% endblock %}
+{% endblock content %}
