@@ -45,7 +45,7 @@ def registerPage(request):
         form = MyUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.username = user.username.lower()
+            user.email = user.email.lower()
             user.save()
             login(request, user)
             return redirect('home')
@@ -195,7 +195,9 @@ def updateuser(request):
     if request.method == 'POST':
         form = UserForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)
+            user.email = user.email.lower()
+            user.save()
             return redirect('user-profile', pk=user.id)
     contxt = {
         'form': form
